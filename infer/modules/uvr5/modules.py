@@ -65,7 +65,7 @@ def uvr(model_name, inp_root, save_root_vocal, paths, save_root_ins, agg, format
                     os.path.basename(inp_path),
                 )
                 os.system(
-                    "ffmpeg -i %s -vn -acodec pcm_s16le -ac 2 -ar 44100 %s -y"
+                    'ffmpeg -i "%s" -vn -acodec pcm_s16le -ac 2 -ar 44100 "%s" -y'
                     % (inp_path, tmp_path)
                 )
                 inp_path = tmp_path
@@ -105,7 +105,4 @@ def uvr(model_name, inp_root, save_root_vocal, paths, save_root_ins, agg, format
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
             logger.info("Executed torch.cuda.empty_cache()")
-        elif torch.backends.mps.is_available():
-            torch.mps.empty_cache()
-            logger.info("Executed torch.mps.empty_cache()")
     yield "\n".join(infos)
